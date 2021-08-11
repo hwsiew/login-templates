@@ -7,6 +7,9 @@ const getDirectories = source =>
     .filter(dirent => dirent.isDirectory())
     .map(dirent => dirent.name)
 
+let mode = process.env.NODE_ENV;
+
+// get all subfolder from src directory
 let packages = getDirectories(path.resolve(__dirname, 'src'));
 let plugins = packages.map(name => (new HtmlWebpackPlugin({
 	filename: `${name}.html`,
@@ -14,19 +17,35 @@ let plugins = packages.map(name => (new HtmlWebpackPlugin({
 	chunks: [`${name}`]
 })));
 
-let mode = process.env.NODE_ENV;
+// parse entry points
+let entries = packages.reduce((acc,name) => {
+	acc[name] = path.resolve(__dirname, `src/${name}/`);
+	return acc;
+}, {});
 
 module.exports = {
 	mode: mode,
 	entry: {
-		'neumorphism':  path.resolve(__dirname, 'src/neumorphism/')
+		index: path.resolve(__dirname, `src/`),
+		...entries
 	},
 	output: {
 		filename: '[name].js',
 		path: path.resolve(__dirname,'dist'),
 		clean: true
 	},
-	plugins: plugins,
+	plugins: [
+		new HtmlWebpackPlugin({
+			filename: `index.html`,
+			template: path.resolve(__dirname, `src/index.html`),
+			chunks: [`index`]
+		}),
+		...plugins
+	],
+	devServer: {
+		contentBase: './dist',
+		hot: true
+	},
 	module: {
 		rules: [
 			{
