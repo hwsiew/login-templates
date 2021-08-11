@@ -14,8 +14,10 @@ let plugins = packages.map(name => (new HtmlWebpackPlugin({
 	chunks: [`${name}`]
 })));
 
+let mode = process.env.NODE_ENV;
+
 module.exports = {
-	mode: 'development',
+	mode: mode,
 	entry: {
 		'neumorphism':  path.resolve(__dirname, 'src/neumorphism/')
 	},
