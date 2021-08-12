@@ -11,7 +11,7 @@ let mode = process.env.NODE_ENV;
 
 // get all subfolder from src directory
 let packages = getDirectories(path.resolve(__dirname, 'src'));
-let plugins = packages.map(name => (new HtmlWebpackPlugin({
+let plugins = packages.filter(name => !name.startsWith('_')).map(name => (new HtmlWebpackPlugin({
 	filename: `${name}.html`,
 	template: path.resolve(__dirname, `src/${name}/index.html`),
 	chunks: [`${name}`]
