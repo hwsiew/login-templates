@@ -6,6 +6,8 @@ let templates = config.templates;
 
 document.addEventListener('DOMContentLoaded', function(event) {
 
+	document.body.style.visibility = 'visible';
+
 	let nav = document.getElementById('nav');
 	let sidebar = document.getElementsByClassName('sidebar')[0];
 	let mobileNav = document.getElementById('mobileNav');
