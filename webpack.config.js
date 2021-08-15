@@ -44,7 +44,9 @@ module.exports = {
 		...plugins
 	],
 	devServer: {
-		contentBase: './dist',
+		open: true, // to open a tab directly upon running
+		contentBase: path.join(__dirname, './src'),
+		watchContentBase: true,
 		hot: true
 	},
 	module: {
