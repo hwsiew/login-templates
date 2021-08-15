@@ -25,6 +25,7 @@ let entries = packages.reduce((acc,name) => {
 
 module.exports = {
 	mode: mode,
+	target: 'web',
 	entry: {
 		index: path.resolve(__dirname, `src/`),
 		...entries
@@ -73,5 +74,4 @@ module.exports = {
 			}
 		]
 	}
-
 }
