@@ -1,5 +1,6 @@
 import glassmorphism from './glassmorphism/preview.png';
 import neumorphism from './neumorphism/preview.png';
+import astra from './astra/preview.png';
 
 const config = {
 	templates : [
@@ -10,6 +11,10 @@ const config = {
 		{
 			src: 'glassmorphism.html',
 			img: glassmorphism
+		},
+		{
+			src: 'astra.html',
+			img: astra
 		},
 	]
 }
